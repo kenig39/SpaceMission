@@ -15,7 +15,8 @@
 		FA5FA9802B580E1F0035A3C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5FA97E2B580E1F0035A3C5 /* Main.storyboard */; };
 		FA5FA9822B580E220035A3C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA5FA9812B580E220035A3C5 /* Assets.xcassets */; };
 		FA5FA9852B580E220035A3C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA5FA9832B580E220035A3C5 /* LaunchScreen.storyboard */; };
-		FA5FA99E2B581CE70035A3C5 /* bulletSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA5FA99D2B581CE60035A3C5 /* bulletSound.mp3 */; };
+		FA5FA9A02B581CE70035A3C5 /* bulletSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA5FA99F2B581CE70035A3C5 /* bulletSound.mp3 */; };
+		FA5FA9A22B581CE70035A3C5 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA5FA9A12B581CE70035A3C5 /* explosion.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +29,8 @@
 		FA5FA97F2B580E1F0035A3C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA5FA9812B580E220035A3C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA5FA9842B580E220035A3C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FA5FA99D2B581CE60035A3C5 /* bulletSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletSound.mp3; path = ../../../Downloads/bulletSound.mp3; sourceTree = "<group>"; };
+		FA5FA99F2B581CE70035A3C5 /* bulletSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bulletSound.mp3; path = ../../../../Downloads/bulletSound.mp3; sourceTree = "<group>"; };
+		FA5FA9A12B581CE70035A3C5 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = explosion.mp3; path = ../../../../Downloads/explosion.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +47,7 @@
 		FA5FA9682B580E1E0035A3C5 = {
 			isa = PBXGroup;
 			children = (
-				FA5FA9732B580E1F0035A3C5 /* Solo Mission */,
+				FA5FA9732B580E1F0035A3C5 /* Space Mission */,
 				FA5FA9722B580E1F0035A3C5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,7 +60,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FA5FA9732B580E1F0035A3C5 /* Solo Mission */ = {
+		FA5FA9732B580E1F0035A3C5 /* Space Mission */ = {
 			isa = PBXGroup;
 			children = (
 				FA5FA9742B580E1F0035A3C5 /* AppDelegate.swift */,
@@ -66,12 +68,13 @@
 				FA5FA9782B580E1F0035A3C5 /* Actions.sks */,
 				FA5FA97A2B580E1F0035A3C5 /* GameScene.swift */,
 				FA5FA97C2B580E1F0035A3C5 /* GameViewController.swift */,
-				FA5FA99D2B581CE60035A3C5 /* bulletSound.mp3 */,
+				FA5FA9A12B581CE70035A3C5 /* explosion.mp3 */,
+				FA5FA99F2B581CE70035A3C5 /* bulletSound.mp3 */,
 				FA5FA97E2B580E1F0035A3C5 /* Main.storyboard */,
 				FA5FA9812B580E220035A3C5 /* Assets.xcassets */,
 				FA5FA9832B580E220035A3C5 /* LaunchScreen.storyboard */,
 			);
-			path = "Solo Mission";
+			path = "Space Mission";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,7 +112,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FA5FA96C2B580E1E0035A3C5 /* Build configuration list for PBXProject "Solo Mission" */;
+			buildConfigurationList = FA5FA96C2B580E1E0035A3C5 /* Build configuration list for PBXProject "Space Mission" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -136,7 +139,8 @@
 				FA5FA9772B580E1F0035A3C5 /* GameScene.sks in Resources */,
 				FA5FA9822B580E220035A3C5 /* Assets.xcassets in Resources */,
 				FA5FA9852B580E220035A3C5 /* LaunchScreen.storyboard in Resources */,
-				FA5FA99E2B581CE70035A3C5 /* bulletSound.mp3 in Resources */,
+				FA5FA9A22B581CE70035A3C5 /* explosion.mp3 in Resources */,
+				FA5FA9A02B581CE70035A3C5 /* bulletSound.mp3 in Resources */,
 				FA5FA9792B580E1F0035A3C5 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +355,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA5FA96C2B580E1E0035A3C5 /* Build configuration list for PBXProject "Solo Mission" */ = {
+		FA5FA96C2B580E1E0035A3C5 /* Build configuration list for PBXProject "Space Mission" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA5FA9862B580E220035A3C5 /* Debug */,
