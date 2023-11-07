@@ -5,13 +5,21 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var gameScore = 0
+    let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
     
+    var levelNunber = 0
+    
+    var livesNumber = 3
+    let livesLabel = SKLabelNode(fontNamed: "The Bold Font")
     
     let player = SKSpriteNode(imageNamed: "playerShip")
     
     let bulletSound = SKAction.playSoundFileNamed("bulletSound.mp3", waitForCompletion: false)
     
     let explosionSound = SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false)
+    
+    
     
     struct PhysicsCategories {
         static let None: UInt32 = 0
@@ -66,15 +74,69 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
         self.addChild(player)
         
+        scoreLabel.text = "Score: 0"
+        scoreLabel.fontSize = 70
+        scoreLabel.fontColor = SKColor.white
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        scoreLabel.position = CGPoint(x: self.size.width*0.15, y: self.size.height*0.9)
+        scoreLabel.zPosition = 100
+        self.addChild(scoreLabel)
+        
+        livesLabel.text = "Lives: 3"
+        livesLabel.fontSize = 70
+        livesLabel.fontColor = SKColor.white
+        livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+        livesLabel.position = CGPoint(x: self.size.width*0.85, y: self.size.height*0.9)
+        livesLabel.zPosition = 100
+        self.addChild(livesLabel)
+        
         startNewLevel()
     }
     
+    func addScore(){
+        gameScore += 1
+        scoreLabel.text = "Score: \(gameScore)"
+        
+        if gameScore == 10 || gameScore == 25 || gameScore == 50 {
+            startNewLevel()
+        }
+           
+    }
+    
+    func loseAlife(){
+        livesNumber -= 1
+        livesLabel.text = "Lives \(livesNumber)"
+        
+        let scaleUp = SKAction.scale(by: 1.5, duration: 0.2)
+        let scaleDown = SKAction.scale(by: 1, duration: 0.2)
+        let scaleSequence = SKAction.sequence([scaleUp, scaleDown])
+        livesLabel.run(scaleSequence)
+        
+    }
+    
     func startNewLevel(){
+        
+        levelNunber += 1
+        if self.action(forKey: "spawningEnemies") != nil{
+            self.removeAction(forKey: "spawningEnemies")
+        }
+        
+        var levelDuration = TimeInterval()
+        switch levelDuration {
+        case 1: levelDuration = 1.2
+        case 2: levelDuration = 1
+        case 3: levelDuration = 0.8
+        case 4: levelDuration = 0.5
+        default:
+            levelDuration = 0.5
+            print("cannot find level info")
+        }
+        
         let spawn = SKAction.run(spawnEnemy)
-        let waitToSpawn = SKAction.wait(forDuration: 1)
-        let spawnSequence = SKAction.sequence([spawn,waitToSpawn])
+        let waitToSpawn = SKAction.wait(forDuration: levelDuration)
+        let spawnSequence = SKAction.sequence([waitToSpawn, spawn])
         let spawnForever = SKAction.repeatForever(spawnSequence)
-        self.run(spawnForever)
+        self.run(spawnForever, withKey: "spawningEnemies")
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -106,6 +168,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if body1.categoryBitMask == PhysicsCategories.Bullet && body2.categoryBitMask == PhysicsCategories.Enemy && (body2.node?.position.y)! < self.size.height {
             // if the bullet has hit the enmy
+            
+            addScore()
             
             if body2.node != nil {
                 spawnExplosion(spawnPosition: body2.node!.position)
@@ -178,7 +242,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let moveEnemy = SKAction.move(to: endPoint, duration: 1.5)
         let deleteEnemy = SKAction.removeFromParent()
-        let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy])
+        let loseAlifeAction = SKAction.run(loseAlife)
+        let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy, loseAlifeAction])
         enemy.run(enemySequence)
         
         let dx = endPoint.x - startPoin.x
