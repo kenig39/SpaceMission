@@ -11,6 +11,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var levelNunber = 0
     
     var livesNumber = 3
+    
+    enum gameState{
+        case preGame
+        case inGame
+        case afterGame
+    }
+    
+    var currentGameState = gameState.inGame
+    
+    
     let livesLabel = SKLabelNode(fontNamed: "The Bold Font")
     
     let player = SKSpriteNode(imageNamed: "playerShip")
@@ -112,7 +122,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let scaleSequence = SKAction.sequence([scaleUp, scaleDown])
         livesLabel.run(scaleSequence)
         
+        
+        if livesNumber == 0{
+            runGameOver()
+        }
     }
+    
+    func runGameOver(){
+        
+        currentGameState = gameState.afterGame
+        
+        
+        
+        self.removeAllActions()
+        
+        self.enumerateChildNodes(withName: "Bullet") { bullet, stop in
+            bullet.removeAllActions()
+        }
+        self.enumerateChildNodes(withName: "Enemy") { enemy, stop in
+            enemy.removeAllActions()
+        }
+    }
+    
+    func changeScene(){
+        
+        
+        let sceneToMove = GameOverScene(size: self.size)
+        sceneToMove.scaleMode = self.scaleMode
+    }
+    
     
     func startNewLevel(){
         
@@ -204,6 +242,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func fireBullet(){
         let bullet = SKSpriteNode(imageNamed: "bullet")
+        bullet.name = "Bullet"
         bullet.setScale(1)
         bullet.position = player.position
         bullet.zPosition = 1
@@ -230,6 +269,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let endPoint = CGPoint(x: randomXEnd, y: -self.size.height * 0.2)
         
         let enemy = SKSpriteNode(imageNamed: "enemyShip")
+        enemy.name = "Enemy"
         enemy.setScale(1)
         enemy.position = startPoin
         enemy.zPosition = 2
@@ -244,7 +284,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let deleteEnemy = SKAction.removeFromParent()
         let loseAlifeAction = SKAction.run(loseAlife)
         let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy, loseAlifeAction])
-        enemy.run(enemySequence)
+        
+        if currentGameState == gameState.inGame{
+            enemy.run(enemySequence)
+        }
         
         let dx = endPoint.x - startPoin.x
         let dy = endPoint.y - startPoin.y
@@ -253,8 +296,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        fireBullet()
         
+        if currentGameState == gameState.inGame{
+            fireBullet()
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -265,7 +310,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let amountDragger = pointOfTouch.x - previousPointOfTouch.x
             
-            player.position.x += amountDragger
+            if currentGameState == gameState.inGame{
+                
+                player.position.x += amountDragger
+        }
             
             if player.position.x > CGRectGetMaxX(gameArea) - player.size.width/2 {
                 player.position.x = CGRectGetMaxX(gameArea) - player.size.width/2
