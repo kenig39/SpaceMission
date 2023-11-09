@@ -3,9 +3,11 @@
 import SpriteKit
 import GameplayKit
 
+var gameScore = 0
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var gameScore = 0
+    
     let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
     
     var levelNunber = 0
@@ -64,6 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        gameScore = 0
         
         self.physicsWorld.contactDelegate = self
         
@@ -142,13 +145,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.enumerateChildNodes(withName: "Enemy") { enemy, stop in
             enemy.removeAllActions()
         }
+        
+        
+        let changeSceneAction = SKAction.run(changeScene)
+        let waitToChangeScene = SKAction.wait(forDuration: 1)
+        let changeScneSequence = SKAction.sequence([waitToChangeScene, changeSceneAction])
+        self.run(changeScneSequence)
+        
     }
     
     func changeScene(){
         
-        
         let sceneToMove = GameOverScene(size: self.size)
         sceneToMove.scaleMode = self.scaleMode
+        let myTransition = SKTransition.fade(withDuration: 0.5)
+        self.view!.presentScene(sceneToMove, transition: myTransition)
     }
     
     
@@ -311,7 +322,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let amountDragger = pointOfTouch.x - previousPointOfTouch.x
             
             if currentGameState == gameState.inGame{
-                
                 player.position.x += amountDragger
         }
             
