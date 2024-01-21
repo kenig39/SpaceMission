@@ -8,16 +8,34 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
+
 
 class GameViewController: UIViewController {
 
+  var backingAudio = AVAudioPlayer()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        let filePath = Bundle.main.path(forResource: "galactic", ofType: "mp3")
+        let audioNSURL = URL(filePath: filePath!)
+        
+        do {
+            backingAudio = try AVAudioPlayer(contentsOf: audioNSURL) }
+                catch {
+                    return print("cannot find the audio")
+                }
+        backingAudio.numberOfLoops = -1
+        backingAudio.play()
+        
         
        
-            let scene = GameScene(size: CGSize(width: 1536, height: 2048))
+            let scene = MainMenuScene(size: CGSize(width: 1536, height: 2048))
         
-        let skView = self.view as! SKView
+            let skView = self.view as! SKView
                
                 scene.scaleMode = .aspectFill
                 
@@ -27,8 +45,8 @@ class GameViewController: UIViewController {
             
             skView.ignoresSiblingOrder = true
             
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            skView.showsFPS = false
+            skView.showsNodeCount = false
         
     }
 

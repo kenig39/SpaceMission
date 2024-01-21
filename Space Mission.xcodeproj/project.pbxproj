@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA033B202B5D8CFF00C79752 /* ManeMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA033B1F2B5D8CFF00C79752 /* ManeMenuScene.swift */; };
+		FA033B232B5D964F00C79752 /* galactic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA033B222B5D964F00C79752 /* galactic.mp3 */; };
 		FA3FBB2E2B5B036F0043D1AF /* Mustard Smile.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA3FBB2D2B5B036F0043D1AF /* Mustard Smile.ttf */; };
 		FA3FBB322B5B41150043D1AF /* GameOverScen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3FBB312B5B41150043D1AF /* GameOverScen.swift */; };
 		FA5FA9752B580E1F0035A3C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FA9742B580E1F0035A3C5 /* AppDelegate.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA033B1F2B5D8CFF00C79752 /* ManeMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManeMenuScene.swift; sourceTree = "<group>"; };
+		FA033B222B5D964F00C79752 /* galactic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = galactic.mp3; path = ../../../../Downloads/galactic.mp3; sourceTree = "<group>"; };
 		FA3FBB2D2B5B036F0043D1AF /* Mustard Smile.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mustard Smile.ttf"; path = "../../../../Downloads/mustard_smile21/Mustard Smile.ttf"; sourceTree = "<group>"; };
 		FA3FBB312B5B41150043D1AF /* GameOverScen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScen.swift; sourceTree = "<group>"; };
 		FA5FA9712B580E1F0035A3C5 /* Solo Mission.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Solo Mission.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,8 +75,10 @@
 				FA5FA9762B580E1F0035A3C5 /* GameScene.sks */,
 				FA5FA9782B580E1F0035A3C5 /* Actions.sks */,
 				FA3FBB312B5B41150043D1AF /* GameOverScen.swift */,
+				FA033B1F2B5D8CFF00C79752 /* ManeMenuScene.swift */,
 				FA5FA97A2B580E1F0035A3C5 /* GameScene.swift */,
 				FA5FA97C2B580E1F0035A3C5 /* GameViewController.swift */,
+				FA033B222B5D964F00C79752 /* galactic.mp3 */,
 				FA3FBB2D2B5B036F0043D1AF /* Mustard Smile.ttf */,
 				FA5FA9A12B581CE70035A3C5 /* explosion.mp3 */,
 				FA5FA99F2B581CE70035A3C5 /* bulletSound.mp3 */,
@@ -144,6 +150,7 @@
 				FA5FA9802B580E1F0035A3C5 /* Main.storyboard in Resources */,
 				FA5FA9772B580E1F0035A3C5 /* GameScene.sks in Resources */,
 				FA5FA9822B580E220035A3C5 /* Assets.xcassets in Resources */,
+				FA033B232B5D964F00C79752 /* galactic.mp3 in Resources */,
 				FA5FA9852B580E220035A3C5 /* LaunchScreen.storyboard in Resources */,
 				FA5FA9A22B581CE70035A3C5 /* explosion.mp3 in Resources */,
 				FA5FA9A02B581CE70035A3C5 /* bulletSound.mp3 in Resources */,
@@ -163,6 +170,7 @@
 				FA5FA97B2B580E1F0035A3C5 /* GameScene.swift in Sources */,
 				FA5FA97D2B580E1F0035A3C5 /* GameViewController.swift in Sources */,
 				FA5FA9752B580E1F0035A3C5 /* AppDelegate.swift in Sources */,
+				FA033B202B5D8CFF00C79752 /* ManeMenuScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
